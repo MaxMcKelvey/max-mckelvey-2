@@ -5,7 +5,7 @@ description: "A static console app for an old phone to sit on my desk, showing w
 back: projects
 pubDate: "Sep 1 2022"
 layout: "../../layouts/MDLayout.astro"
-draft: true
+draft: false
 ---
 
 ## Intro
