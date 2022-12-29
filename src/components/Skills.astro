@@ -1,0 +1,62 @@
+---
+const options = ['Languages', 'Frameworks', 'Digital Design', 'PCB Design', '3D Design', 'EE_Broad', 'CS_Broad'];
+
+const sortedSkills = [
+    { order: 0, skill: 'Verilog/SystemVerilog', categories: ['ee'] },
+    { order: 0, skill: 'Javascript', categories: ['cs_lang'] },
+    { order: 0, skill: 'Java', categories: ['cs_lang'] },
+    { order: 0, skill: 'Python', categories: ['cs_lang'] },
+    { order: 0, skill: 'C/C++', categories: ['cs_lang'] },
+    { order: 0, skill: 'HTML/CSS', categories: ['cs_lang'] },
+    { order: 0, skill: 'KiCad', categories: ['ee'] },
+    { order: 0, skill: 'Altium Designer', categories: ['ee'] },
+    { order: 0, skill: 'Autodesk Inventor', categories: ['me'] },
+    { order: 0, skill: 'SOLIDWORKS', categories: ['me'] },
+    { order: 0, skill: 'Robotics Engineering', categories: ['me'] },
+    { order: 0, skill: 'Quartus Prime', categories: ['ee'] },
+    { order: 0, skill: 'ReactJS', categories: ['cs_frame'] },
+    { order: 0, skill: 'Node.js', categories: ['cs_frame'] },
+    { order: 0, skill: 'Arduino', categories: ['cs_frame'] },
+    { order: 0, skill: 'OpenCV', categories: ['cs_frame'] },
+    { order: 0, skill: 'git', categories: ['cs'] },
+    { order: 0, skill: 'Circuit Analysis and Design', categories: ['ee'] },
+    { order: 0, skill: 'Multivariable Calculus', categories: ['other'] },
+    { order: 0, skill: 'Differential Equations', categories: ['other'] },
+    { order: 0, skill: 'Linear Algebra', categories: ['other'] },
+    { order: 0, skill: 'General Chemistry', categories: ['other'] },
+    { order: 0, skill: 'Basic Physics', categories: ['other'] },
+    { order: 0, skill: 'Basic Electromagnetism', categories: ['other'] },
+    // { order: 0, skill: '', categories: ['Languages', 'Frameworks', 'Digital Design', 'PCB Design', '3D Design'] },
+];
+
+import SkillSection from './SkillSection.astro';
+
+const get_skills = (category: string) => sortedSkills.filter(skill => skill.categories.includes(category));
+---
+
+<div id="skills" class="flex flex-col w-full justify-center p-20 bg-slate-600 text-zinc-300 md:snap-center">
+    <h2 class="self-center text-3xl pb-2">A Full Stack Engineer?</h2>
+    <p class="self-center w-96">I not only work on sofware engineering projects but also build circuits, design digital systems, model 3d parts and assemblies, and manufacture parts</p>
+    <div class="pt-10"/>
+    <div class="flex flex-col md:flex-row">
+        <SkillSection title="Electrical Engineering">{get_skills('ee').map(skill => <li>{skill.skill}</li>)}</SkillSection>
+        <SkillSection title="Software Engineering">
+            <div class="flex justify-evenly">
+                <div>
+                    <h3>Languages</h3>  
+                    {get_skills('cs_lang').map(skill => <li>{skill.skill}</li>)}
+                </div>
+                <div>
+                    <h3>Frameworks</h3>
+                    {get_skills('cs_frame').map(skill => <li>{skill.skill}</li>)}
+                </div>
+            </div>
+            <div class="text-center">{get_skills('cs').map(skill => <li>{skill.skill}</li>)}</div>
+        </SkillSection>
+        <SkillSection title="Mechanical Engineering">{get_skills('me').map(skill => <li>{skill.skill}</li>)}</SkillSection>
+    </div>
+    <!-- <div class="flex h-10 mt-10 flex text-sm inline-center justify-evenly" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+        <h4 class={`text-lg ${open ? "hidden" : "visible"}`}>Other →</h4>
+        {sortedSkills.filter(skill => skill.categories.includes('other')).map(skill => <div class={`text-center ${open ? "visible" : "hidden"}`}>{skill.skill}</div>)}
+    </div> -->
+</div>

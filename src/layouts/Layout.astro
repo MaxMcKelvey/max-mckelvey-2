@@ -1,0 +1,100 @@
+---
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+        <div class="fixed px-10 py-7 text-2xl">
+            <div><a href="/projects" class="link-underline-fast">projects</a></div>
+            <div><a href="/blog" class="link-underline-fast">blog</a></div>
+        </div>
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background-color: #F6F6F6;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	ul > li {
+        @apply list-disc ml-5 mb-1;
+    }
+    ol > li {
+        @apply list-decimal ml-5 mb-1;
+    }
+    li > ul {
+        @apply ml-10;
+    }
+    li > ol {
+        @apply ml-10;
+    }
+    .link-underline {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size .3s ease-in-out;
+    }
+    .link-underline:hover {
+        background-size: 100% 2px;
+        background-position: 0 100%
+    }
+    .link-underline-fast {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size .15s ease-in-out;
+    }
+    .link-underline-fast:hover {
+        background-size: 100% 2px;
+        background-position: 0 100%
+    }
+    .link-underline-back-fast {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 100% 100%;
+        background-repeat: no-repeat;
+        transition: background-size .15s ease-in-out;
+    }
+    .link-underline-back-fast:hover {
+        background-size: 100% 2px;
+        background-position: 100% 100%
+    }
+    .scroll-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scroll-hidden::-webkit-scrollbar {
+        display: none;
+    }
+    .fixed {
+        position: fixed;
+    }
+</style>

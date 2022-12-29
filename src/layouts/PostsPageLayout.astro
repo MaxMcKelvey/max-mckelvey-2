@@ -1,0 +1,108 @@
+---
+export interface Props {
+	title: string;
+    content_type: string;
+}
+
+const { title, content_type } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title}</title>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<meta name="description" content={"a list of " + content_type} />
+	</head>
+	<body>
+        <div class="fixed px-10 py-7 text-2xl">
+            <div><a class="link-underline-back-fast" href="/">{`home`}</a></div>
+            <!-- <div><a class="link-underline-back-fast" href="/">{`← home`}</a></div> -->
+        </div>
+        <div class="p-4" />
+        <div class="flex justify-center">
+            <div class="border-2 rounded-[16px] px-24 mt-10 pb-4 border-zinc-400">
+                <h1 class="border-b-0 text-6xl">{title}</h1>
+            </div>
+        </div>
+        <div class="p-4" />
+		<slot />
+	</body>
+</html>
+<style is:global>
+	:root {
+		--accent: 124, 58, 237;
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+	}
+	html {
+		font-family: system-ui, sans-serif;
+		background-color: #F6F6F6;
+	}
+	code {
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	ul > li {
+        @apply list-disc ml-5 mb-1;
+    }
+    ol > li {
+        @apply list-decimal ml-5 mb-1;
+    }
+    li > ul {
+        @apply ml-10;
+    }
+    li > ol {
+        @apply ml-10;
+    }
+    .link-underline {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size .3s ease-in-out;
+    }
+    .link-underline:hover {
+        background-size: 100% 2px;
+        background-position: 0 100%
+    }
+    .link-underline-fast {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 0 100%;
+        background-repeat: no-repeat;
+        transition: background-size .15s ease-in-out;
+    }
+    .link-underline-fast:hover {
+        background-size: 100% 2px;
+        background-position: 0 100%
+    }
+    .link-underline-back-fast {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 100% 100%;
+        background-repeat: no-repeat;
+        transition: background-size .15s ease-in-out;
+    }
+    .link-underline-back-fast:hover {
+        background-size: 100% 2px;
+        background-position: 100% 100%
+    }
+    .scroll-hidden {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .scroll-hidden::-webkit-scrollbar {
+        display: none;
+    }
+    .fixed {
+        position: fixed;
+    }
+</style>

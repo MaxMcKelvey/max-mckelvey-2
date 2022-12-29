@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Opener from '../components/Opener.astro';
+import PersonalInfo from '../components/PersonalInfo.astro';
+import Skills from '../components/Skills.astro';
+import PostSlider from '../components/PostSlider.astro';
+
+const posts = (await Astro.glob('./blog/*.{md,mdx}')).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+).map(p => ({
+	href: p.url,
+	title: p.frontmatter.title,
+	subtitle: p.frontmatter.subtitle,
+	description: p.frontmatter.description,
+}));
+
+const projects = (await Astro.glob('./projects/*.{md,mdx}')).filter((post) => !post.frontmatter.draft).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+).map(p => ({
+	href: p.url,
+	title: p.frontmatter.title,
+	subtitle: p.frontmatter.subtitle,
+	description: p.frontmatter.description,
+}));
+---
+
+<Layout title="max-mckelvey">
+	<main class="overflow-y-auto snap-y h-screen scroll-smooth">
+		<Opener />
+		<Skills />
+		<PostSlider title="Projects →" href="/projects" posts={projects}/>
+		<PostSlider title="Blog →" href="/blog" posts={posts}/>
+		<PersonalInfo />
+	</main>
+</Layout>

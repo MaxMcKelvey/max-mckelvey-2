@@ -1,0 +1,29 @@
+---
+import PostCard from './PostCard.astro';
+
+type Post = {
+    title: string;
+    description: string;
+    subtitle: string;
+    href: string;
+}
+
+export interface Props {
+	title: string;
+    href: string;
+	posts: Post[];
+}
+
+const { href, title, posts } = Astro.props;
+---
+
+<div class="my-10">
+    <div class="py-5 w-full text-center text-2xl">
+        <a href={href} class="link-underline-fast">{title}</a>
+    </div>
+    <div class="flex w-full snap-x snap-mandatory overflow-x-scroll scroll-hidden">
+        <div class="px-[50vw]"/>
+        {posts.map((p: Post) => <PostCard post={p}/>)}
+        <div class="px-[50vw]"/>
+    </div>
+</div>

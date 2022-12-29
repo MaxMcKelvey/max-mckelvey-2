@@ -1,0 +1,116 @@
+---
+export interface Props {
+	content: {
+		title: string;
+		subtitle: string;
+        back: string;
+	};
+}
+
+const {
+	content: { title, subtitle, back },
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>{title}</title>
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+		<!-- <meta name="generator" content={Astro.generator} /> -->
+		<meta name="description" content={title} />
+	</head>
+	<body class="">
+        <div class="fixed px-10 py-7 text-2xl">
+            <div><a class="link-underline-back-fast" href="/">{`home`}</a></div>
+            <div><a class="link-underline-back-fast" href={"/" + back}>{`${back}`}</a></div>
+            <!-- <div><a class="link-underline-back-fast" href="/">{`← home`}</a></div> -->
+            <!-- <div><a class="link-underline-back-fast" href={"/" + back}>{`← ${back}`}</a></div> -->
+        </div>
+        <div class="p-4" />
+        <div class="flex justify-center">
+            <div class="border-2 rounded-[16px] px-24 mt-10 pb-4 border-zinc-400">
+                <h1 class="border-b-0 text-6xl">{title}</h1>
+                <h4 class="text-zinc-400">{subtitle}</h4>
+            </div>
+        </div>
+
+        <div class="flex justify-center">
+            <div class="w-3/4 md:w-1/2">
+                <slot />
+                <div class="p-4" />
+            </div>
+        </div>
+	</body>
+</html>
+<style is:global>
+    :root {
+        --accent: 124, 58, 237;
+        --accent-gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+    }
+    html {
+        font-family: system-ui, sans-serif;
+        background-color: #F6F6F6;
+    }
+    code {
+        font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+            Bitstream Vera Sans Mono, Courier New, monospace;
+    }
+    .link-underline-back-fast {
+        border-bottom-width: 0;
+        /* background-image: linear-gradient(transparent, transparent), linear-gradient(#fff, #fff); */
+        background-image: linear-gradient(transparent, transparent), linear-gradient(black, black);
+        background-size: 0 2px;
+        background-position: 100% 100%;
+        background-repeat: no-repeat;
+        transition: background-size .15s ease-in-out;
+    }
+    .link-underline-back-fast:hover {
+        background-size: 100% 2px;
+        background-position: 100% 100%
+    }
+    .fixed {
+        position: fixed;
+    }
+    ul > li {
+        @apply list-disc ml-5 mb-1;
+    }
+    ol > li {
+        @apply list-decimal ml-5 mb-1;
+    }
+    li > ul {
+        @apply ml-10;
+    }
+    li > ol {
+        @apply ml-10;
+    }
+    h1 {
+        @apply text-4xl border-b-2 border-slate-400 my-6;
+    }
+    h2 {
+        @apply text-3xl border-b-2 border-slate-200 my-3;
+    }
+    h3 {
+        @apply text-2xl my-2;
+    }
+    h4 {
+        @apply text-xl my-2;
+    }
+    blockquote {
+        @apply border-l-2 border-gray-400 pl-4 italic my-2;
+    }
+    p {
+        @apply my-4;
+    }
+    pre {
+        @apply py-4 px-5 rounded-[15px];
+    }
+    p > code {
+        @apply inline px-[.2rem] py-[.1rem] bg-slate-100 rounded text-pink-600;
+    }
+    /* img {
+        @apply w-[80%] mx-auto my-2;
+    } */
+</style>

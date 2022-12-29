@@ -1,0 +1,28 @@
+---
+import PostCard from '../components/PostCard.astro';
+import Layout from '../layouts/PostsPageLayout.astro';
+
+type Post = {
+    title: string;
+    description: string;
+    subtitle: string;
+    href: string;
+}
+
+const projects = (await Astro.glob('./projects/*.{md,mdx}')).filter((post) => !post.frontmatter.draft).sort(
+	(a, b) => new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+).map(p => ({
+	href: p.url,
+	title: p.frontmatter.title,
+	subtitle: p.frontmatter.subtitle,
+	description: p.frontmatter.description,
+}));
+---
+
+<Layout title="Projects" content_type="projects">
+	<main class="">
+        <div class="grid grid-cols-[repeat(auto-fit,minmax(280px,320px))]">
+			{projects.map((p: Post) => <PostCard post={p}/>)}
+		</div>
+	</main>
+</Layout>
