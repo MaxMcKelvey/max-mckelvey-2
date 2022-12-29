@@ -18,7 +18,7 @@ There were a few reasons I started to build my personal website
     - I could look back to remember how projects worked in the case that something broke or I was preforming maintenance
     - I could share my project and everything I have been learning with other aspiring engineers and developers
 
-This ultimately led me to purchase my own domain one night, and force me to develop the website.
+This ultimately led me to purchase my own domain one night, and force myself to develop the website.
 
 # The Initial Design
 
