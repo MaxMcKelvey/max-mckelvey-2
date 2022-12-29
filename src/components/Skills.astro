@@ -34,11 +34,11 @@ import SkillSection from './SkillSection.astro';
 const get_skills = (category: string) => sortedSkills.filter(skill => skill.categories.includes(category));
 ---
 
-<div id="skills" class="flex flex-col w-full justify-center p-20 bg-slate-600 text-zinc-300 md:snap-center">
+<div id="skills" class="flex flex-col w-full justify-center sm:p-20 p-10 bg-slate-600 text-zinc-300 md:snap-center">
     <h2 class="self-center text-3xl pb-2">A Full Stack Engineer?</h2>
-    <p class="self-center w-96">I not only work on sofware engineering projects but also build circuits, design digital systems, model 3d parts and assemblies, and manufacture parts</p>
+    <p class="self-center sm:w-96 w-full">I not only work on software engineering projects but also build circuits, design digital systems, model 3d parts and assemblies, and manufacture parts</p>
     <div class="pt-10"/>
-    <div class="flex flex-col md:flex-row">
+    <div class="flex flex-col md:flex-row gap-2">
         <SkillSection title="Electrical Engineering">{get_skills('ee').map(skill => <li>{skill.skill}</li>)}</SkillSection>
         <SkillSection title="Software Engineering">
             <div class="flex justify-evenly">
