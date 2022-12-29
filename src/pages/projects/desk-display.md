@@ -52,7 +52,7 @@ I solved this by instead implementing the API using REST requests, which did wit
 
 Initially I wrote code that looked something like this:
 
-```jsx=
+```js
 function myfunction() {
     let things = [];
     
@@ -66,7 +66,7 @@ function myfunction() {
 
 While I assumed that `things` would wait for the fetch request to resolve, that wasn't the case. The fetch promise isn't resolved until after `things` is returned, so it is always empty. Therefore, a different way of collecting data from a fetch request must be used.
 
-```jsx=
+```js
 async function myfunction() {
     
     let things = await fetch(url, data)
